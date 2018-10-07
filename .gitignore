@@ -1,0 +1,8 @@
+.DS_Store
+.byebug_history
+.bundle
+tmp/*
+Gemfile.lock
+*.swp
+*.swo
+.rspec

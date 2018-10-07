@@ -1,0 +1,12 @@
+require 'spec/converters/shared_examples'
+require get_path_to_file('<%= @name %>')
+
+describe <%= @class_name %> do
+  include_context 'converter'
+
+  let(:data) do
+    { fields: ['fields'], copyright: 'copyright', movies: ['movies'] }
+  end
+
+  it_behaves_like '#convert'
+end
