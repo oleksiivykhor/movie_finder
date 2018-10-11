@@ -28,6 +28,8 @@ class BaseGenerator
   end
 
   def generate_file(file_path, source = 'lib')
+    raise UnknownGeneratorTarget unless Dir.exist? dir_path(file_path, -3)
+
     create_file file_path
     File.open(file_path, 'w') do |file|
       file.write get_template source
