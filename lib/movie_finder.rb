@@ -25,6 +25,6 @@ class MovieFinder
     current_date_time = DateTime.now
     current_date_time_str = current_date_time.strftime('%d_%m_%Y_%H_%M_%S')
     dir_path = "tmp/#{finder.class}/#{current_date_time_str}"
-    @path ||= File.join(dir_path, "#{dir_path}results.#{converter.class::FILE_FORMAT}")
+    @path ||= File.join(ENV['HOME'], "#{dir_path}/results.#{converter.class::FILE_FORMAT}")
   end
 end

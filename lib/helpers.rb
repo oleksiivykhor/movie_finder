@@ -42,8 +42,11 @@ module Helpers
   end
 
   def create_file(file_path)
-    dir_path = file_path.split('/')[0..-2].join('/')
-    create_dir dir_path
+    create_dir dir_path(file_path)
     FileUtils.touch file_path
+  end
+
+  def dir_path(file_path, target = -2)
+    file_path.split('/')[0..target].join('/')
   end
 end
