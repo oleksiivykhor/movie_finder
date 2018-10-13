@@ -4,6 +4,7 @@ class BaseGenerator
   attr_reader :lib_file_path, :spec_file_path
 
   def initialize(name)
+    @logger = MovieFinderLogger.new('generator')
     parts = name.split('_')
     @name = name
     @class_name = parts.map(&:capitalize).join
@@ -34,5 +35,11 @@ class BaseGenerator
     File.open(file_path, 'w') do |file|
       file.write get_template source
     end
+    @logger.log.info "Generated file #{file_path}"
+  rescue UnknownGeneratorTarget => err
+    log_message = "Attempt to generate file #{file_path}, with error "\
+      "message: #{err.message}"
+    @logger.log.warn log_message
+    raise err
   end
 end

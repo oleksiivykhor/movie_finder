@@ -2,6 +2,7 @@
 .byebug_history
 .bundle
 tmp/*
+logs/*
 Gemfile.lock
 *.swp
 *.swo

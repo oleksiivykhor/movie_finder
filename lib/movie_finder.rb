@@ -6,6 +6,7 @@ class MovieFinder
   attr_reader :finder, :converter
 
   def initialize(finder_name, search_request, format: :csv)
+    @logger = MovieFinderLogger.new('movie_finder')
     @finder = get_class("#{finder_name}_finder").new(search_request)
     @converter = get_class("#{format}_converter").new
   end
@@ -15,6 +16,7 @@ class MovieFinder
     finder.visit_site
     finder.search_process
     converter.convert(finder.data, results_file_path)
+    @logger.log.info "Getting movies list #{results_file_path}"
   end
 
   private :finder, :converter
